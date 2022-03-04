@@ -17,21 +17,21 @@ const fs = require("fs");
 //         console.log('Succsessfully wrote to file!')
 //     }).catch(err => {
 //         console.log(err)
-// //     });
+//     });
 
 
-// const fileRead = (file, utf8) => {
+// const fileRead = (utf8) => {
 //     return new Promise((succsess, fail) => {
-//         fs.readFile(file, utf8, err => {
+//         fs.readFile(utf8, (file, err) => {
 //             if (err) return fail(err);
-//             return succsess()
+//             return succsess(file)
 //         });
 //     });
 // };
 
-// fileRead('data.txt', 'utf8')
-//     .then((data) => {
-//         console.log("Read Succsessfully!")
+// fileRead('data.txt')
+//     .then((file) => {
+//         console.log(file)
 //     }).catch(err => {
 //         console.log(err)
 //     })
@@ -109,14 +109,22 @@ const fs = require("fs");
 //     console.log(chunk.toString());
 // });
 
-const exist = (path) => {
-    return new Promise((succsess, fail) => {
-        fs.exist(path, err => {
-            if (err) return fail(err);
-            return succsess()
-        });
-    });
-}
+// const exist = (path) => {
+//     return new Promise((succsess, fail) => {
+//         fs.exist(path, err => {
+//             if (err) return fail(err);
+//             return succsess()
+//         });
+//     });
+// }
 
-exist("data.txt")
-    .then()
+// exist("data.txt")
+//     .then()
+
+
+// const sobiranje = (a, b) => {
+//     return a + b;
+// }
+
+// let rezultat = sobiranje(4, 3);
+// console.log(rezultat)
