@@ -84,7 +84,7 @@ api.get('/users', async(req, res) => {
 });
 
 api.post('/users', async(req, res) => {
-    const { firstName, lastName } = req.body;
+    const { firstName, lastName } = req.data;
     if (!firstName || !lastName) {
         return res.status(400).send("Missing data!")
     }
@@ -96,13 +96,13 @@ api.post('/users', async(req, res) => {
     }
 });
 
-api.delete('/users/:index', async(req, res) => { // DELETE http://localhost:10000/users/3
-    // delete person by index number
-});
+// api.delete('/users/:index', async(req, res) => { // DELETE http://localhost:10000/users/3
+//     // delete person by index number
+// });
 
-api.put('/users/:index', async(req, res) => { // PUT http://localhost:10000/users/3
-    // update person by index number
-});
+// api.put('/users/:index', async(req, res) => { // PUT http://localhost:10000/users/3
+//     // update person by index number
+// });
 
 api.listen(10000, err => {
     if (err) return console.log(err);
