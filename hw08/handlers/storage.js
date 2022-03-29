@@ -49,26 +49,31 @@ const removeFile = async(req, res) => {
         return res.status(404).send('File not found!')
     };
     try {
-        fs.unlinkSync(filePath);
-        return res.status(200).send("Succsesfully Deleted!")
+        fs.unlink(filePath);
+        return res.status(204).send("Succsesfully Deleted!")
     } catch (err) {
         return res.status(500).send(err)
     }
 };
+
 const listFiles = async(req, res) => {
     let userDir = `user_${req.user.id}`;
     let userDirPath = `${__dirname}/../uploads/${userDir}`;
     let files = [];
+
     try {
-        fs.readdirSync(userDirPath).forEach(file => {
-            files.push(file);
-        });
+
+        files = fs.readdir(userDirPath);
+        // fs.readdirSync(userDirPath).forEach(file => {
+        //     files.push(file);
+        // });
         return res.status(200).send(files);
 
     } catch (err) {
         return res.status(500).send(err);
     }
 };
+
 module.exports = {
     upload,
     download,
