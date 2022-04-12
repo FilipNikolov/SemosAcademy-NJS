@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Welcome } from "./components/Welcome";
+import { Comments } from "./components/Comments";
+import { Student } from "./components/Student";
+import { StudentClass } from "./components/StudentClass";
+import { FruitList } from "./components/FruitList";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+var name = 'Filip';
+var lastname = 'Nikolov';
+var age = 19;
+var has_comments = true;
+var student= {
+  name:"Filip",
+  lastname:"Nikolov",
+  college: "Semos"
+};
+let listaNaOvosje =[
+  "apple","orange","banana"
+]
+
+export function App(){
+  return(
+   <div id="app">
+      <Welcome ime={'petar'} prezime={'tralevski'}/>
+      <hr/>
+      <p>Traleeeeee</p>
+      <hr/>
+      <Welcome ime={name} prezime={lastname} godini={age}/>
+      <hr/>
+      <Comments has_comments={has_comments} mutiple_comments={false}/>
+      <hr/>
+      <Student student={student}/>
+      <hr/>
+      <StudentClass student={student}/>
+      <hr/>
+      <FruitList listOfFruits={listaNaOvosje}/>
     </div>
-  );
-}
-
-export default App;
+  )
+};
