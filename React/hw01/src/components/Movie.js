@@ -12,14 +12,18 @@ export const MovieList = (props) => {
                             <li>{movie.name}</li>
                             <li>{movie.date}</li>
                             <li>{movie.genre}</li>
-                            <li>{movie.imdbUrl}</li>
-                            <li>{movie.imgUrl}</li>
+                            <li>
+                                <a href="{movie.imdbUrl}">
+                                IMDB Link
+                                </a>
+                            </li>
+                            <li>
+                                <img src="{movie.imgUrl}" />
+                            </li>
                             
-
                         </ul>
                     )
                 })}
-            
         </div>
     )
 }
