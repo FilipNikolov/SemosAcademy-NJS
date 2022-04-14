@@ -1,0 +1,32 @@
+#app{
+    margin:auto;
+    padding: auto;
+    color:honeydew;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    background-color: #3ACEFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+#app a {
+    text-decoration: none;
+    color: #575757;
+    padding: 1px;
+    border: 1px solid honeydew;
+   
+    
+}
+#app img {
+   width: 100px;
+   height: 100px;
+    display: flex;
+    justify-content: center;
+   
+}
+#app li span{
+    color:#575757;
+
+}

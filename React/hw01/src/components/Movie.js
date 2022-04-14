@@ -1,24 +1,27 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export const MovieList = (props) => {
     return(
         <div id="movie-list">
             <h2>Movie List</h2>
 
-                {props.data.map((movie)=>{
+                {props.data.map((movie, i)=>{
                     return(
-                        <ul>
+                        <ul key={i}  type="none">
 
-                            <li>{movie.name}</li>
-                            <li>{movie.date}</li>
-                            <li>{movie.genre}</li>
-                            <li>
-                                <a href="{movie.imdbUrl}">
+                            <li><span>Title:</span> {movie.name}</li>
+                            <li><span>Date:</span> {movie.date}</li>
+                            <li><span>Genre:</span> {movie.genre}</li>
+                            <li><span>imdbUrl:</span>
+                               
+                                <a href={movie.imdbUrl} target="_blank">
                                 IMDB Link
                                 </a>
                             </li>
                             <li>
-                                <img src="{movie.imgUrl}" />
+                                <span>ImgUrl:</span>
+                                <img src={movie.imgUrl} width="50px"/>
                             </li>
                             
                         </ul>
@@ -28,3 +31,6 @@ export const MovieList = (props) => {
     )
 }
 
+MovieList.propTypes={
+    data:PropTypes.arrayOf(PropTypes.object).isRequired
+};
