@@ -54,7 +54,7 @@ html,body{
 }
 
 .eye-button{
-    background: red;
+    background: transparent;
     border: 0px;
     position: absolute;
     right: 18px;
