@@ -1,82 +1,70 @@
 import React,{useState,useEffect} from "react";
 import {Input} from "./Input";
-import { DropDownOption } from "./DropDownOption";
+import { Dropdown } from "./Dropdown";
 import { func } from "prop-types";
 
 export const Login =()=>{
     const[username,setUsername]=useState('');
     const[password,setPassword]=useState('');
+    const[fieldType,setFieldType]=useState('password');
     const[comment,setComment]=useState('');
-    const[fieldType,setFieldType]=useState('');
-    const[app, setApp]=useState('');
-
-    let socialLogins= [
-        {
-            name:"facebook",
-            value:"facebook"
-        },
-        {
-            name:"instagram",
-            value:"instagram"
-        },
-        {
-            name:"snapchat",
-            value:"snapchat"
-        }
+    const[longComment,setLongComment]=useState(false);
+    const [selectedOption,setSelectedOption] = useState('Facebook');
+    const elements=[
+        {value:'Facebook',name:'Facebook'},
+        {value:'Instagram',name:'Instagram'},
+        {value:'Snapchat',name:'Snapchat'},
     ];
+
+    useEffect(()=>{
+        console.log('Username:', username);
+        console.log('Password:',password);
+        console.log('Comment:', comment);
+        console.log('App', selectedOption);
+    },[username,password,comment,selectedOption]);
 
     function setToggle(){
         setFieldType(
-            fieldType === "password" ? "text" : "password"
+            fieldType ==="password" ? "text" : "password"
         )
     };
 
-    function handleChange(e){
-        setApp(e.target.value)
-    }
-
     function handleSubmit(event){
         event.preventDefault();
-        alert(`Username: ${username}\nPassword: ${password}\nApp : ${app}`)
+        alert(`Username: ${username}\nPassword: ${password}\nComment: ${comment}\nSelectedApp: ${selectedOption}`)
     };
 
     return(
-        <div id="login">
+        <div id='login'>
             <form onSubmit={handleSubmit}>
-                <Input
-                type="text"
-                placeholder="Enter Username"
-                value={username}
-                onChange={(e)=>{setUsername(e.target.value)}}
-                name="username"
-                />
-                <Input
-                type={fieldType}
-                placeholder="Enter Password"
-                value={password}
-                onChange={(e)=>{setPassword(e.target.value)}}
-                />
-                <Input
-                type="text"
-                placeholder="Insert a comment"
-                value={comment}
-                onChange={(e)=>{setComment(e.target.value)}}
-                />
-                <select defaultValue={''} onChange={handleChange}>
-                <option value="" disabled>Select your option</option>
-                {socialLogins.map((network, i)=>{
-                    return(
-                        <DropDownOption
-                        key={i}
-                        name={network.name}
-                        value={network.value}
-                        />
-                       )
-                })}
-                </select>
-                <button className="action-button">Sign In</button>
-           
+            <Input
+            type="text"
+            placeholder="Enter Username"
+            value={username}
+            onChange={(e)=>{setUsername(e.target.value)}}
+            />
+            <Input
+            type={fieldType}
+            name="password"
+            placeholder="Enter Password"
+            value={password}
+            onChange={(e)=>{setPassword(e.target.value)}}
+            setToggle={setToggle}
+            mouseDown={()=>{setFieldType("text")}}
+            mouseUp={()=>{setFieldType("password")}}
+            />
+            <Input
+            type="text"
+            name="comment"
+            placeholder="Insert a comment"
+            value={comment}
+            onChange={(e)=>{setComment(e.target.value)}}
+            renderTextArea={longComment}
+            changeInput={()=>{setLongComment(!longComment)}}
+            />
+            <Dropdown elements={elements} onChange={(e)=>{setSelectedOption(e.target.value)}}/>
+            <button className="action-button">Sign in</button>
             </form>
         </div>
     )
-};
+}

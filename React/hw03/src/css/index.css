@@ -35,6 +35,12 @@ html,body{
     margin:0px;
 }
 
+#app-select{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+}
+
 #login form input{
     width: 100%;
     box-sizing: border-box;
@@ -54,7 +60,7 @@ html,body{
 }
 
 .eye-button{
-    background: red;
+    background: transparent;
     border: 0px;
     position: absolute;
     right: 18px;
