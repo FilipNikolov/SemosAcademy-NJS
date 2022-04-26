@@ -21,7 +21,7 @@ export const Items =({listOfItems,markItemsAsDone})=>{
                           <td>{item.id}</td>
                           <td>{item.item}</td>
                           <td><input type={"checkbox"} value={item.done} checked={item.done} onChange={()=>{markItemsAsDone(item)}}></input></td>
-                        <td><button>Edit</button><button>Delete</button></td>
+                        <td><button>Edit</button><button onClick={()=>{deleteItem(item.id)}}>Delete</button></td>
                       </tr>
                       )
                })}

@@ -11,8 +11,11 @@ export function App(){
  ]);
   const[newItem,setItem]=useState('');
  
- 
-  function markItemsAsDone(item){
+ function deleteItem(id){
+  
+ }
+  
+ function markItemsAsDone(item){
     console.log(item)
     setItems([
       ...items.map(nesto=> (nesto.id === item.id) ? 
