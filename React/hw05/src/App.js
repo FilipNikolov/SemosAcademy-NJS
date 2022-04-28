@@ -48,7 +48,7 @@ export function App(){
       ?
       {
         id:item.id,
-        text:editItem.text,
+        text:editingItem.text,
         done:item.done
       }
       :
@@ -75,7 +75,9 @@ export function App(){
         editing={editing}
         setEditing={editItem}
         editingItem={editingItem}
-        setEditingItem={(e)=>{setEditingItem({...editItem, text:e.target})}}
+        setEditingItem={(e)=>{setEditingItem({...editingItem, text:e.target.value})}}
+        cancel={()=>{setEditing(false)}}
+        save={updateItem}
       />
     </div>
   )
