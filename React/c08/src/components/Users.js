@@ -19,6 +19,7 @@ export const Users = ({ usersList }) => {
                                 <td>{user.name}</td>
                                 <td>{user.username}</td>
                                 <td>{user.email}</td>
+                                {/* <td>{user.address}</td> */}
                             </tr>
                         )
                     })}
