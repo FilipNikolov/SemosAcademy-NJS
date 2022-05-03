@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { API_URL } from "../utils/contstants";
 
 export const Comments = () => {
     const [comments, setComments] = useState([]);
 
     useEffect(() => {
-        fetch("https://jsonplaceholder.typicode.com/comments")
+        fetch(`${API_URL}/comments`)
             .then(res => res.json())
             .then(json => setComments(json))
             .catch(err => alert(err))
@@ -16,13 +17,14 @@ export const Comments = () => {
                 <div>
                     {comments.map(comment => {
                         return (
-                            <>
-                                <p>Name:{comment.name}</p>
-                                <p>Email:{comment.email}</p>
-                                <p>Body:{comment.body}</p>
+
+                            <React.Fragment key={comment.id}>
+                                <p>Name: {comment.name}</p>
+                                <p>Email: {comment.email}</p>
+                                <p>Body: {comment.body}</p>
                                 <br />
                                 <br />
-                            </>
+                            </React.Fragment>
 
                         )
                     })}

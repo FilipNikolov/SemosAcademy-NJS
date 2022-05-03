@@ -9,13 +9,13 @@ export const Posts = ({ postList }) => {
                 <div>
                     {postList.map(post => {
                         return (
-                            <>
-                                <p>Id:{post.id}</p>
-                                <p>Title:{post.title}</p>
-                                <p>Body:{post.body}</p>
+                            <React.Fragment key={post.id}>
+                                <p>Id: {post.id}</p>
+                                <p>Title: {post.title}</p>
+                                <p>Body: {post.body}</p>
                                 <br />
                                 <br />
-                            </>
+                            </React.Fragment>
                         )
                     })}
                 </div> : <p>Loading...</p>}
