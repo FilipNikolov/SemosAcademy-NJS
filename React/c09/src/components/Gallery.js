@@ -3,21 +3,24 @@ import PropTypes from "prop-types";
 import { Popup } from "./Popup"
 
 export const Gallery = ({ photoList, openPhoto, selectedImage, closePhoto }) => {
-    console.log(photoList)
+    // console.log(photoList)
     return (
         <div id="gallery">
-            <div>Gallery:{photoList.slice(0, 10).map(photo => {
+            {photoList.slice(0, 50).map(photo => {
                 return (
-                    <div onClick={() => openPhoto(photo)}
+                    <div
+                        className='image-holder'
+                        onClick={() => openPhoto(photo)}
                         key={photo.id}>
 
                         <img src={photo.thumbnailUrl} alt={photo.title} />
                     </div>
                 )
             })}
-                {
-                    selectedImage && selectedImage !== "" && <Popup selektiranaSlika={selectedImage} zatvoriSlika={closePhoto} />
-                }</div>
+            {
+                selectedImage && selectedImage !== "" &&
+                <Popup selektiranaSlika={selectedImage} zatvoriSlika={closePhoto} />
+            }
         </div>
     )
 }

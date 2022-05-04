@@ -15,6 +15,14 @@ export function App() {
     const [photos, setPhotos] = useState([]);
     const [selectedImage, setSelectedImage] = useState({});
 
+    function openPhoto(photos) {
+        setSelectedImage(photos)
+    }
+
+    function closePhoto() {
+        setSelectedImage({});
+    }
+
     useEffect(() => {
         fetch(`${API_URL}/posts`)
             .then(res => res.json())
@@ -27,22 +35,21 @@ export function App() {
             .catch(err => alert(err))
     }, []);
 
-    function openPhoto() {
-        setSelectedImage(photos)
-    }
-
-    function closePhoto() {
-        setSelectedImage({});
-    }
     return (
         <div id="app">
-            <h2>Application</h2>
             <Nav />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/posts" element={<Posts postList={posts} />} />
                 <Route path="/comments" element={<Comments />} />
-                <Route path="/gallery" element={<Gallery photoList={photos} openPhoto={openPhoto} selectedImage={selectedImage.url} closePhoto={closePhoto} />} />
+                <Route path="/gallery" element={
+                    <Gallery
+                        photoList={photos}
+                        openPhoto={openPhoto}
+                        selectedImage={selectedImage.url}
+                        closePhoto={closePhoto}
+                    />
+                } />
 
             </Routes>
         </div>
