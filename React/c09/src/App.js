@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import { Route, Routes } from 'react-router-dom';
 import { Comments } from "./components/Comments";
 import { Posts } from "./components/Posts";
@@ -7,21 +7,12 @@ import { Home } from "./components/Home";
 import { Gallery } from "./components/Gallery";
 import { API_URL } from "./utils/contstants";
 
-
-
+const UserContext = createContext(null);
 
 export function App() {
-    const [posts, setPosts] = useState([]);
-    const [photos, setPhotos] = useState([]);
-    const [selectedImage, setSelectedImage] = useState({});
-
-    function openPhoto(photos) {
-        setSelectedImage(photos)
-    }
-
-    function closePhoto() {
-        setSelectedImage({});
-    }
+    let [posts, setPosts] = useState([]);
+    let [photos, setPhotos] = useState([]);
+    let [selectedImage, setSelectedImage] = useState({});
 
     useEffect(() => {
         fetch(`${API_URL}/posts`)
@@ -31,27 +22,51 @@ export function App() {
 
         fetch(`${API_URL}/photos`)
             .then(res => res.json())
-            .then(json => setPhotos(json))
+            .then(json => setPhotos(json)
+            )
             .catch(err => alert(err))
     }, []);
+
+    function openPhoto(photo) {
+        setSelectedImage(photo)
+    }
+
+    function closePhoto() {
+        setSelectedImage({});
+    }
+
+    function deleteSelectedPhoto() {
+        setPhotos([...photos.filter(photo => photo.id != selectedImage.id)])
+        closePhoto()
+    }
 
     return (
         <div id="app">
             <Nav />
             <Routes>
+
                 <Route path="/" element={<Home />} />
-                <Route path="/posts" element={<Posts postList={posts} />} />
+                <Route path="/posts" element={
+                    <UserContext.Provider value={{ posts }}>
+                        <Posts postList={posts}
+                        />
+                    </UserContext.Provider>
+                } />
                 <Route path="/comments" element={<Comments />} />
                 <Route path="/gallery" element={
-                    <Gallery
-                        photoList={photos}
-                        openPhoto={openPhoto}
-                        selectedImage={selectedImage.url}
-                        closePhoto={closePhoto}
-                    />
+                    <UserContext.Provider value={{ photos, selectedImage, closePhoto, openPhoto }}>
+                        <Gallery
+
+                            photoList={photos}
+                            openPhoto={openPhoto}
+                            selectedImage={selectedImage.url}
+                            closePhoto={closePhoto}
+                            deleteSelectedPhoto={deleteSelectedPhoto}
+                        />
+                    </UserContext.Provider>
                 } />
 
             </Routes>
-        </div>
+        </div >
     )
 }

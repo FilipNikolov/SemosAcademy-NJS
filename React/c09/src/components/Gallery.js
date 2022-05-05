@@ -1,9 +1,11 @@
-import React from "react";
+import React, { createContext } from "react";
 import PropTypes from "prop-types";
 import { Popup } from "./Popup"
 
-export const Gallery = ({ photoList, openPhoto, selectedImage, closePhoto }) => {
-    // console.log(photoList)
+const UserContext = createContext(null);
+
+export const Gallery = ({ photoList, openPhoto, selectedImage, closePhoto, deleteSelectedPhoto }) => {
+
     return (
         <div id="gallery">
             {photoList.slice(0, 50).map(photo => {
@@ -15,11 +17,14 @@ export const Gallery = ({ photoList, openPhoto, selectedImage, closePhoto }) => 
 
                         <img src={photo.thumbnailUrl} alt={photo.title} />
                     </div>
+
                 )
             })}
             {
                 selectedImage && selectedImage !== "" &&
-                <Popup selektiranaSlika={selectedImage} zatvoriSlika={closePhoto} />
+                <UserContext.Provider value={{ selectedImage, closePhoto }}>
+                    <Popup selectedImage={selectedImage} closePhoto={closePhoto} deleteSelectedPhoto={deleteSelectedPhoto} />
+                </UserContext.Provider>
             }
         </div>
     )
