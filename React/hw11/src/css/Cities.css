@@ -1,0 +1,44 @@
+.cities {
+    font-family: 'Times New Roman', Times, serif;
+    background-image: url("https://cdn.wallpapersafari.com/60/20/50yc6t.jpg");
+    background-position: bottom;
+    background-size: cover;
+    transition: 0.4 ease;
+    position: absolute;
+    top: 0;
+    margin-top: 45px;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.search-box{
+    display: flex;
+    justify-content: center;
+    margin-top: 75px;
+    width: 100%;
+}
+
+.search-box .search-bar{
+    display: block;
+    position: absolute;
+    width: 50%;
+    padding: 15px;
+    border: none;
+    outline: none;
+    box-shadow: 0px 5px rgba(0, 0, 0, 0.2);
+    color: #313131;
+    font-size: 20px;
+}
+
+.search-box .search-bar:focus{
+    background-color: whitesmoke;
+}
+
+.search-button{
+    position: absolute;
+    left: 75%;
+    padding: 15px;
+    border:none;
+    color:#313131;
+    font-size: 20px;;
+}
